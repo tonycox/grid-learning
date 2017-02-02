@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  hazelcast-node:
+    image: hazelcast/hazelcast
+  submit-app:
+    image: hazelcast/hazelcast
+    volumes:
+      - ./build/libs:/app
+    command:
+      - "java"
+      - "-jar"
+      - "/app/hazelcast-app-1.0.jar"
+      # fix floating ip and add args in code
+      - "172.20.0.3:5701"
