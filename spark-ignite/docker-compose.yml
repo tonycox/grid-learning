@@ -1,0 +1,33 @@
+version: '2.0'
+
+services:
+  spark-master:
+    image: tonycox/spark-ignite
+    hostname: spark-master
+    container_name: spark-master
+    expose:
+      - 7077
+      - 6066
+      - 8080
+    ports:
+      # Spark master WebUI port
+      - "8080:8080"
+      # Spark master job submission port
+      - "7077:7077"
+    cpu_shares: 3000
+    mem_limit: 2g
+    command: bash -c "start-master.sh && exec tail -f /opt/spark-1.6.3-bin-hadoop2.6/logs/*"
+
+  spark-slave:
+    image: tonycox/spark-ignite
+    expose:
+      - 8081
+      - 11211
+      - 47100
+      - 47500
+      - 49112
+    links:
+      - spark-master
+    cpu_shares: 3000
+    mem_limit: 2g
+    command: bash -c "start-slave.sh spark://spark-master:7077 && ignite.sh"
