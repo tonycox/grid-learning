@@ -8,6 +8,7 @@ targetCompatibility = 1.8
 
 ext {
     igniteVersion = '1.8.0'
+    kafkaVersion = '0.10.1.0'
 }
 
 repositories {
@@ -20,5 +21,6 @@ repositories {
 dependencies {
     compile "org.apache.ignite:ignite-spring:${igniteVersion}"
     compile "org.apache.ignite:ignite-core:${igniteVersion}"
+    compile "org.apache.kafka:kafka_2.11:${kafkaVersion}"
     testCompile 'junit:junit:4.12'
 }

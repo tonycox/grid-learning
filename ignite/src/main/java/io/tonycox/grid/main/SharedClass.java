@@ -1,4 +1,4 @@
-package io.tonycox.grid;
+package io.tonycox.grid.main;
 
 /**
  * @author Anton Solovev

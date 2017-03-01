@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  kafka:
+    image: spotify/kafka
+    ports:
+      - "9092:9092"
+      - "2181:2181"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.1.100
+      KAFKA_ADVERTISED_PORT: 9092
+#  ignite:
+#    image: apacheignite/ignite
+#    environment:
+#      - CONFIG_URI
