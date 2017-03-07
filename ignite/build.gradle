@@ -22,5 +22,6 @@ dependencies {
     compile "org.apache.ignite:ignite-spring:${igniteVersion}"
     compile "org.apache.ignite:ignite-core:${igniteVersion}"
     compile "org.apache.kafka:kafka_2.11:${kafkaVersion}"
+    compile "com.google.guava:guava:21.0"
     testCompile 'junit:junit:4.12'
 }

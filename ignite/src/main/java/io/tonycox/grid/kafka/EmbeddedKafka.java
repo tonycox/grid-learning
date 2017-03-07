@@ -17,11 +17,12 @@ import org.apache.zookeeper.server.ZooKeeperServer;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.util.*;
 
-public class EmbeddedKafka {
+public class EmbeddedKafka implements Serializable {
     private static final String LOCALHOST = "localhost";
     private static final int ZOOKEEPER_TICK_TIME = 500;
     private static final int ZOOKEEPER_SESSION_TIMEOUT = 8_000;
@@ -77,7 +78,7 @@ public class EmbeddedKafka {
             properties.setProperty("zookeeper.connect", String.format("%s:%s", LOCALHOST, zookeeperPort));
             properties.setProperty("broker.id", String.valueOf(i + 1));
             properties.setProperty("host.name", LOCALHOST);
-            properties.setProperty("port", Integer.toString(port));
+            properties.setProperty("port", String.valueOf(port));
             properties.setProperty("log.dir", logDir.getAbsolutePath());
             properties.setProperty("log.flush.interval.messages", String.valueOf(1));
             properties.setProperty("log.retention.ms", String.valueOf(Long.MAX_VALUE));
@@ -114,8 +115,7 @@ public class EmbeddedKafka {
                     AdminUtils.deleteTopic(zkUtils, topic);
                 }
             }
-        }
-        finally {
+        } finally {
             if (zkUtils != null) {
                 zkUtils.close();
             }

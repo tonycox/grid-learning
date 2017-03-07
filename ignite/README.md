@@ -1,4 +1,8 @@
-### Ignite nodes on docker with java app
+### Ignite cache replication
 
-1. `docker run -d apacheignite/ignite` n times
-2. run java apps
+
+1. Run `KafkaCluster`
+2. Run `MainGrid` and `DRGrid`
+3. Run `ClientWriter` and `ClientReader`
+
+You could configure and run kafka and ignite on docker containers
